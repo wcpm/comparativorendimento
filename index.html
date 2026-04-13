@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investimentos no Brasil â€” 2022 a 2026</title>
+<title>Investimentos no Brasil - 2022 a 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -15,14 +15,12 @@
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;padding:40px 20px 60px}
   .wrapper{max-width:960px;margin:0 auto}
-
   header{text-align:center;margin-bottom:48px}
   .eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
   h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;line-height:1.1;color:#fff;margin-bottom:12px}
   h1 span{color:var(--cdi)}
   .subtitle{color:var(--label);font-size:15px;max-width:580px;margin:0 auto;line-height:1.6}
   .hline{width:60px;height:3px;background:linear-gradient(90deg,var(--cdi),var(--ibov));margin:22px auto 0;border-radius:99px}
-
   .sim-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px 30px;margin-bottom:38px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
   .sim-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
   .sim-row{display:flex;align-items:center;gap:10px}
@@ -35,7 +33,6 @@
   .sim-box .gain{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px}
   .sim-box .total{font-size:12px;color:#fff;font-weight:600;margin-bottom:2px}
   .sim-box .nm{font-size:10px;color:var(--muted)}
-
   .chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px 26px 20px;margin-bottom:30px}
   .chart-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:5px}
   .chart-sub{font-size:12px;color:var(--muted);margin-bottom:14px}
@@ -43,7 +40,7 @@
   .leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--label)}
   .leg-line{width:16px;height:3px;border-radius:99px;flex-shrink:0}
   #chartSvg{display:block;width:100%;height:auto}
-
+  .nasdaq-note{background:rgba(96,212,247,.06);border:1px solid rgba(96,212,247,.2);border-radius:10px;padding:12px 16px;font-size:11px;color:var(--label);margin-top:12px;line-height:1.6}
   .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:30px}
   .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 15px;position:relative;overflow:hidden;transition:transform .2s}
   .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac)}
@@ -53,9 +50,7 @@
   .card-pct{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1;margin-bottom:5px}
   .card-desc{font-size:10px;color:var(--label);line-height:1.4;margin-bottom:7px}
   .card-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:99px;font-weight:600}
-
   .note{background:rgba(252,92,125,.06);border:1px solid rgba(252,92,125,.2);border-radius:12px;padding:15px 18px;font-size:13px;color:var(--label);margin-bottom:30px;display:flex;gap:12px;align-items:flex-start;line-height:1.6}
-
   .bars-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;margin-bottom:30px}
   .bars-year{margin-bottom:24px}
   .bars-year:last-child{margin-bottom:0}
@@ -66,7 +61,6 @@
   .bar-track{flex:1;height:17px;background:var(--bg);border-radius:4px;overflow:hidden}
   .bar-fill{height:100%;border-radius:4px}
   .bar-val{width:58px;font-size:11px;font-weight:600;flex-shrink:0}
-
   .tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:26px;margin-bottom:30px;overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:12px;min-width:650px}
   th{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:9px 11px;text-align:right;border-bottom:1px solid var(--border)}
@@ -79,24 +73,17 @@
   .pill{display:inline-block;padding:2px 6px;border-radius:6px;font-size:11px;font-weight:600}
   .pp{background:rgba(0,229,160,.1);color:#00e5a0}
   .pn{background:rgba(252,92,125,.1);color:#fc5c7d}
-
-  .nasdaq-note{background:rgba(96,212,247,.06);border:1px solid rgba(96,212,247,.2);border-radius:10px;padding:12px 16px;font-size:11px;color:var(--label);margin-top:12px;line-height:1.6}
-
   footer{text-align:center;font-size:11px;color:var(--muted);padding-top:18px;border-top:1px solid var(--border);line-height:1.9}
-
-  @media(max-width:600px){
-    .sim-card{flex-direction:column}
-    input[type=number]{width:140px;font-size:18px}
-  }
+  @media(max-width:600px){.sim-card{flex-direction:column}input[type=number]{width:140px;font-size:18px}}
 </style>
 </head>
 <body>
 <div class="wrapper">
 
   <header>
-    <div class="eyebrow">Brasil Â· Jan/2022 â†’ Abr/2026</div>
+    <div class="eyebrow">Brasil &middot; Jan/2022 &rarr; Abr/2026</div>
     <h1>Onde seu dinheiro<br><span>rendeu mais?</span></h1>
-    <p class="subtitle">CDB/CDI, Tesouro Selic, PoupanÃ§a, Ibovespa, NASDAQ-100, DÃ³lar e IPCA â€” quanto R$ 10.000 viraram desde janeiro de 2022.</p>
+    <p class="subtitle">CDB/CDI, Tesouro Selic, Poupan&ccedil;a, Ibovespa, NASDAQ-100, D&oacute;lar e IPCA &mdash; quanto R$&nbsp;10.000 viraram desde janeiro de 2022.</p>
     <div class="hline"></div>
   </header>
 
@@ -112,21 +99,29 @@
   </div>
 
   <div class="chart-wrap">
-    <div class="chart-title">EvoluÃ§Ã£o acumulada â€” Base 100 (Jan/2022)</div>
-    <div class="chart-sub">Quanto R$ 100 investidos no inÃ­cio de 2022 valem em cada perÃ­odo.</div>
+    <div class="chart-title">Evolu&ccedil;&atilde;o acumulada &mdash; Base 100 (Jan/2022)</div>
+    <div class="chart-sub">Quanto R$&nbsp;100 investidos no in&iacute;cio de 2022 valem em cada per&iacute;odo.</div>
     <div class="legend" id="legend"></div>
     <svg id="chartSvg" xmlns="http://www.w3.org/2000/svg"></svg>
     <div class="nasdaq-note">
-      ðŸ’¡ <strong style="color:#60d4f7">NASDAQ-100 em BRL:</strong> retorno em USD convertido para reais usando a variaÃ§Ã£o cambial de cada ano. Representa o resultado para o investidor brasileiro que comprou o ativo e trouxe de volta em reais. NÃ£o inclui IOF, spread cambial ou imposto sobre ganho de capital.
+      &#128161; <strong style="color:#60d4f7">NASDAQ-100 em BRL:</strong>
+      retorno em USD convertido para reais usando a varia&ccedil;&atilde;o cambial de cada ano.
+      Representa o resultado para o investidor brasileiro que comprou o ativo e trouxe de volta em reais.
+      N&atilde;o inclui IOF, spread cambial ou imposto sobre ganho de capital.
     </div>
   </div>
 
   <div class="cards" id="cards"></div>
 
   <div class="note">
-    <span style="font-size:20px;flex-shrink:0">ðŸ”¥</span>
-    <div><strong style="color:#fff">InflaÃ§Ã£o acumulada (IPCA) jan/2022â€“abr/2026: ~+22,9%.</strong><br>
-    Abaixo disso = perda de poder de compra. CDB/CDI, Tesouro Selic e NASDAQ-100 ficaram bem acima. PoupanÃ§a ficou abaixo. Ibovespa superou mas com -10% em 2024. DÃ³lar praticamente empatou. O NASDAQ-100 foi o grande destaque, mas lembre: caiu -32,6% em 2022 e exige exposiÃ§Ã£o cambial.</div>
+    <span style="font-size:20px;flex-shrink:0">&#128293;</span>
+    <div>
+      <strong style="color:#fff">Infla&ccedil;&atilde;o acumulada (IPCA) jan/2022&ndash;abr/2026: ~+22,9%.</strong><br>
+      Abaixo disso = perda de poder de compra. CDB/CDI, Tesouro Selic e NASDAQ-100 ficaram bem acima.
+      Poupan&ccedil;a ficou abaixo. Ibovespa superou mas com &minus;10% em 2024.
+      D&oacute;lar praticamente empatou. O NASDAQ-100 foi o grande destaque, mas lembre:
+      caiu &minus;32,6% em 2022 e exige exposi&ccedil;&atilde;o cambial.
+    </div>
   </div>
 
   <div class="bars-wrap">
@@ -136,224 +131,228 @@
 
   <div class="tbl-wrap">
     <div class="chart-title" style="margin-bottom:4px">Tabela completa de rendimentos</div>
-    <div class="chart-sub" style="margin-bottom:18px">2026* = parcial janâ€“abr Â· CDB = 100% CDI bruto Â· Tesouro Selic = lÃ­quido estimado IR 15% Â· NASDAQ-100 = em BRL (USD Ã— cÃ¢mbio)</div>
+    <div class="chart-sub" style="margin-bottom:18px">
+      2026* = parcial jan&ndash;abr &middot; CDB = 100% CDI bruto &middot;
+      Tesouro Selic = l&iacute;quido estimado IR 15% &middot;
+      NASDAQ-100 = em BRL (USD &times; c&acirc;mbio)
+    </div>
     <table id="tbl"></table>
   </div>
 
   <footer>
-    Fontes: B3, Banco Central do Brasil, IBGE, Investidor10, Clube dos Poupadores, TradeThatsSwing/QQQ Â· Dados de 2026 parciais (janâ€“abr/2026)<br>
-    CDB 100% CDI bruto (antes IR) Â· Tesouro Selic lÃ­quido IR 15% Â· Ibovespa sem dividendos Â· DÃ³lar: variaÃ§Ã£o BRL/USD Â· NASDAQ-100 em BRL = retorno USD Ã— variaÃ§Ã£o cambial<br>
-    InfogrÃ¡fico educacional â€” nÃ£o constitui recomendaÃ§Ã£o de investimento.
+    Fontes: B3, Banco Central do Brasil, IBGE, Investidor10, Clube dos Poupadores, TradeThatsSwing/QQQ
+    &middot; Dados de 2026 parciais (jan&ndash;abr/2026)<br>
+    CDB 100% CDI bruto (antes IR) &middot; Tesouro Selic l&iacute;quido IR 15% &middot;
+    Ibovespa sem dividendos &middot; D&oacute;lar: varia&ccedil;&atilde;o BRL/USD &middot;
+    NASDAQ-100 em BRL = retorno USD &times; varia&ccedil;&atilde;o cambial<br>
+    Infogr&aacute;fico educacional &mdash; n&atilde;o constitui recomenda&ccedil;&atilde;o de investimento.
   </footer>
 </div>
 
 <script>
-// â”€â”€ DADOS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// NASDAQ-100 em BRL: combinamos retorno USD com variaÃ§Ã£o do cÃ¢mbio BRL/USD
-// FÃ³rmula: (1 + retUSD) Ã— (1 + retCambio) - 1
-// CÃ¢mbio: 2022=-5,28% | 2023=-7,2% | 2024=+27,37% | 2025=-8,01% | 2026=-8,5%
-// NASDAQ USD: 2022=-32,6% | 2023=+56,42% | 2024=+25,72% | 2025=+19,45% | 2026=-2%
-// NASDAQ BRL:
-//   2022: (1-0.326)*(1-0.0528)-1 = 0.674*0.9472-1 = -0.3613 â†’ -36,1%
-//   2023: (1+0.5642)*(1-0.072)-1 = 1.5642*0.928-1 = +0.4516 â†’ +45,2%
-//   2024: (1+0.2572)*(1+0.2737)-1 = 1.2572*1.2737-1 = +0.6013 â†’ +60,1%
-//   2025: (1+0.1945)*(1-0.0801)-1 = 1.1945*0.9199-1 = +0.0987 â†’ +9,9%
-//   2026: (1-0.02)*(1-0.085)-1   = 0.98*0.915-1    = -0.1033 â†’ -10,3%
-
-const ASSETS = [
-  { id:'cdi',     name:'CDB / CDI',      icon:'ðŸ¦', color:'#00e5a0',
-    desc:'Renda fixa bancÃ¡ria. 100% CDI. IR sobre o lucro.',
-    badge:'âœ“ Bateu inflaÃ§Ã£o', bc:'rgba(0,229,160,.15)', bcc:'#00e5a0', bb:'rgba(0,229,160,.3)',
-    y:{ 2022:12.4, 2023:13.04, 2024:10.9,   2025:14.32, 2026:3.69  } },
-  { id:'tesouro', name:'Tesouro Selic',   icon:'ðŸŸ¡', color:'#ffd166',
-    desc:'TÃ­tulo pÃºblico federal. Seguro e lÃ­quido. IR 15%.',
-    badge:'âœ“ Bateu inflaÃ§Ã£o', bc:'rgba(255,209,102,.15)', bcc:'#ffd166', bb:'rgba(255,209,102,.3)',
-    y:{ 2022:10.54,2023:11.08, 2024:9.27,   2025:12.17, 2026:3.14  } },
-  { id:'poupanca',name:'PoupanÃ§a',        icon:'ðŸ·', color:'#4fc3f7',
+var ASSETS = [
+  { id:'nasdaq',  name:'NASDAQ-100 BRL', icon:'&#128187;', color:'#60d4f7',
+    desc:'Top 100 Nasdaq em BRL. Exposicao cambial inclusa.',
+    badge:'&#128640; Alto retorno / alto risco',
+    bc:'rgba(96,212,247,.15)', bcc:'#60d4f7', bb:'rgba(96,212,247,.3)',
+    y:{ 2022:-36.1, 2023:45.16, 2024:60.13, 2025:9.87, 2026:-10.33 } },
+  { id:'ibov',    name:'Ibovespa',        icon:'&#128200;', color:'#ff9d3d',
+    desc:'Indice da B3. Alta volatilidade, sem garantia.',
+    badge:'&#9889; Volatil',
+    bc:'rgba(255,157,61,.15)', bcc:'#ff9d3d', bb:'rgba(255,157,61,.3)',
+    y:{ 2022:4.69,  2023:22.28, 2024:-10.36, 2025:34.1,  2026:21.55 } },
+  { id:'cdi',     name:'CDB / CDI',       icon:'&#127970;', color:'#00e5a0',
+    desc:'Renda fixa bancaria. 100% CDI. IR sobre o lucro.',
+    badge:'&#10003; Bateu inflacao',
+    bc:'rgba(0,229,160,.15)', bcc:'#00e5a0', bb:'rgba(0,229,160,.3)',
+    y:{ 2022:12.4,  2023:13.04, 2024:10.9,   2025:14.32, 2026:3.69  } },
+  { id:'tesouro', name:'Tesouro Selic',   icon:'&#11093;',  color:'#ffd166',
+    desc:'Titulo publico federal. Seguro e liquido. IR 15%.',
+    badge:'&#10003; Bateu inflacao',
+    bc:'rgba(255,209,102,.15)', bcc:'#ffd166', bb:'rgba(255,209,102,.3)',
+    y:{ 2022:10.54, 2023:11.08, 2024:9.27,   2025:12.17, 2026:3.14  } },
+  { id:'poupanca',name:'Poupanca',        icon:'&#127991;', color:'#4fc3f7',
     desc:'Isenta de IR. 70% da Selic + TR quando Selic > 8,5%.',
-    badge:'âœ— Abaixo do CDI', bc:'rgba(79,195,247,.15)', bcc:'#4fc3f7', bb:'rgba(79,195,247,.3)',
-    y:{ 2022:7.9,  2023:8.1,   2024:6.72,   2025:8.19,  2026:2.5   } },
-  { id:'ibov',    name:'Ibovespa',        icon:'ðŸ“ˆ', color:'#ff9d3d',
-    desc:'Ãndice da B3. Alta volatilidade, sem garantia.',
-    badge:'âš¡ VolÃ¡til',      bc:'rgba(255,157,61,.15)', bcc:'#ff9d3d', bb:'rgba(255,157,61,.3)',
-    y:{ 2022:4.69, 2023:22.28, 2024:-10.36, 2025:34.1,  2026:21.55 } },
-  { id:'nasdaq',  name:'NASDAQ-100 BRL',  icon:'ðŸ’»', color:'#60d4f7',
-    desc:'Top 100 Nasdaq convertido para BRL. ExposiÃ§Ã£o cambial inclusa.',
-    badge:'ðŸš€ Alto retorno / alto risco', bc:'rgba(96,212,247,.15)', bcc:'#60d4f7', bb:'rgba(96,212,247,.3)',
-    y:{ 2022:-36.1,2023:45.16, 2024:60.13,  2025:9.87,  2026:-10.33} },
-  { id:'dolar',   name:'DÃ³lar',           icon:'ðŸ’µ', color:'#a78bfa',
-    desc:'VariaÃ§Ã£o BRL/USD. ProteÃ§Ã£o anti-crise, muito oscilante.',
-    badge:'~ Empatou inflaÃ§Ã£o',bc:'rgba(167,139,250,.15)', bcc:'#a78bfa', bb:'rgba(167,139,250,.3)',
-    y:{ 2022:-5.28,2023:-7.2,  2024:27.37,  2025:-8.01, 2026:-8.5  } },
-  { id:'ipca',    name:'IPCA',            icon:'ðŸ”¥', color:'#fc5c7d',
-    desc:'InflaÃ§Ã£o oficial. Meta mÃ­nima para nÃ£o perder poder de compra.',
-    badge:'ReferÃªncia',       bc:'rgba(252,92,125,.15)', bcc:'#fc5c7d', bb:'rgba(252,92,125,.3)',
-    y:{ 2022:5.79, 2023:4.62,  2024:4.83,   2025:4.26,  2026:1.03  } }
+    badge:'&#10007; Abaixo do CDI',
+    bc:'rgba(79,195,247,.15)', bcc:'#4fc3f7', bb:'rgba(79,195,247,.3)',
+    y:{ 2022:7.9,   2023:8.1,   2024:6.72,   2025:8.19,  2026:2.5   } },
+  { id:'dolar',   name:'Dolar',           icon:'&#128181;', color:'#a78bfa',
+    desc:'Variacao BRL/USD. Protecao anti-crise, muito oscilante.',
+    badge:'~ Empatou inflacao',
+    bc:'rgba(167,139,250,.15)', bcc:'#a78bfa', bb:'rgba(167,139,250,.3)',
+    y:{ 2022:-5.28, 2023:-7.2,  2024:27.37,  2025:-8.01, 2026:-8.5  } },
+  { id:'ipca',    name:'IPCA',            icon:'&#128293;', color:'#fc5c7d',
+    desc:'Inflacao oficial. Meta minima para nao perder poder de compra.',
+    badge:'Referencia',
+    bc:'rgba(252,92,125,.15)', bcc:'#fc5c7d', bb:'rgba(252,92,125,.3)',
+    y:{ 2022:5.79,  2023:4.62,  2024:4.83,   2025:4.26,  2026:1.03  } }
 ];
 
-const YEARS = [2022,2023,2024,2025,2026];
-const YLBLS = ['2022','2023','2024','2025','2026*'];
-const XLBLS = ['Jan/22','Dez/22','Dez/23','Dez/24','Dez/25','Abr/26'];
+var YEARS = [2022,2023,2024,2025,2026];
+var YLBLS = ['2022','2023','2024','2025','2026*'];
+var XLBLS = ['Jan/22','Dez/22','Dez/23','Dez/24','Dez/25','Abr/26'];
 
 function cumul(a){
-  let v=100; const pts=[100];
-  YEARS.forEach(yr=>{ v*=(1+a.y[yr]/100); pts.push(v); });
+  var v=100, pts=[100];
+  YEARS.forEach(function(yr){ v*=(1+a.y[yr]/100); pts.push(v); });
   return pts;
 }
-ASSETS.forEach(a=>{ a.pts=cumul(a); a.total=a.pts[5]-100; });
+ASSETS.forEach(function(a){ a.pts=cumul(a); a.total=a.pts[5]-100; });
 
-// â”€â”€ ORDEM POR RENTABILIDADE TOTAL (decrescente) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-const SORTED = [...ASSETS].sort((a,b)=>b.total-a.total);
-const SORTED_NO_IPCA = SORTED.filter(a=>a.id!=='ipca');
+// ordenado por total decrescente
+var SORTED = ASSETS.slice().sort(function(a,b){ return b.total-a.total; });
+var SORTED_NO_IPCA = SORTED.filter(function(a){ return a.id!=='ipca'; });
 
-// â”€â”€ SIMULAÃ‡ÃƒO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// SIMULACAO
 function fmtR(v){ return 'R$\u00a0'+Math.round(Math.abs(v)).toLocaleString('pt-BR'); }
 function updateSim(){
-  const p=parseFloat(document.getElementById('principal').value)||10000;
-  document.getElementById('simResults').innerHTML=
-    SORTED_NO_IPCA.map(a=>{
-      const g=p*a.total/100, f=p+g;
-      return `<div class="sim-box">
-        <div class="gain" style="color:${a.color}">${g>=0?'+':'-'}${fmtR(g)}</div>
-        <div class="total">${fmtR(f)}</div>
-        <div class="nm">${a.icon} ${a.name}</div>
-      </div>`;
-    }).join('');
+  var p = parseFloat(document.getElementById('principal').value)||10000;
+  document.getElementById('simResults').innerHTML = SORTED_NO_IPCA.map(function(a){
+    var g=p*a.total/100, f=p+g;
+    return '<div class="sim-box">'
+      +'<div class="gain" style="color:'+a.color+'">'+(g>=0?'+':'-')+fmtR(g)+'</div>'
+      +'<div class="total">'+fmtR(f)+'</div>'
+      +'<div class="nm">'+a.icon+' '+a.name+'</div>'
+      +'</div>';
+  }).join('');
 }
-document.getElementById('principal').addEventListener('input',updateSim);
+document.getElementById('principal').addEventListener('input', updateSim);
 updateSim();
 
-// â”€â”€ LEGENDA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-document.getElementById('legend').innerHTML=
-  SORTED.map(a=>`<div class="leg-item">
-    <div class="leg-line" style="background:${a.color}"></div>${a.icon} ${a.name}
-  </div>`).join('');
+// LEGENDA
+document.getElementById('legend').innerHTML = SORTED.map(function(a){
+  return '<div class="leg-item"><div class="leg-line" style="background:'+a.color+'"></div>'+a.icon+' '+a.name+'</div>';
+}).join('');
 
-// â”€â”€ GRÃFICO SVG â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// GRAFICO SVG
 function buildChart(){
-  const svg=document.getElementById('chartSvg');
-  const W=svg.parentElement.clientWidth||800;
-  const PAD={top:16,right:22,bottom:36,left:46};
-  const IW=W-PAD.left-PAD.right;
-  const IH=Math.max(200,Math.round(IW*0.40));
-  const H=IH+PAD.top+PAD.bottom;
-  const N=6;
+  var svg = document.getElementById('chartSvg');
+  var W = svg.parentElement.clientWidth || 800;
+  var PAD = {top:16, right:22, bottom:36, left:46};
+  var IW = W - PAD.left - PAD.right;
+  var IH = Math.max(200, Math.round(IW*0.40));
+  var H  = IH + PAD.top + PAD.bottom;
+  var N  = 6;
 
-  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  svg.setAttribute('width',W);
-  svg.setAttribute('height',H);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
 
-  const all=ASSETS.flatMap(a=>a.pts);
-  const lo=Math.min(...all), hi=Math.max(...all);
-  const pad=(hi-lo)*0.08;
-  const minV=Math.floor((lo-pad)/10)*10;
-  const maxV=Math.ceil((hi+pad)/10)*10;
-  const rng=maxV-minV;
+  var all = [];
+  ASSETS.forEach(function(a){ a.pts.forEach(function(v){ all.push(v); }); });
+  var lo = Math.min.apply(null,all), hi = Math.max.apply(null,all);
+  var pad = (hi-lo)*0.08;
+  var minV = Math.floor((lo-pad)/10)*10;
+  var maxV = Math.ceil((hi+pad)/10)*10;
+  var rng  = maxV - minV;
 
-  const tx=i=>PAD.left+(i/(N-1))*IW;
-  const ty=v=>PAD.top+IH-((v-minV)/rng)*IH;
+  function tx(i){ return PAD.left + (i/(N-1))*IW; }
+  function ty(v){ return PAD.top  + IH - ((v-minV)/rng)*IH; }
 
-  let out='';
+  var out = '';
 
   // grid
-  for(let s=0;s<=5;s++){
-    const v=minV+(rng/5)*s, y=ty(v).toFixed(1);
-    const isB=Math.abs(v-100)<rng/5*0.7;
-    out+=`<line x1="${PAD.left}" y1="${y}" x2="${W-PAD.right}" y2="${y}"
-      stroke="${isB?'rgba(255,255,255,.2)':'rgba(255,255,255,.06)'}"
-      stroke-width="${isB?1.2:.8}" ${isB?'stroke-dasharray="5,4"':''}/>`;
-    out+=`<text x="${PAD.left-5}" y="${parseFloat(y)+3.5}"
-      fill="#6b7594" font-size="9" font-family="DM Sans,sans-serif" text-anchor="end">${Math.round(v)}</text>`;
+  for(var s=0; s<=5; s++){
+    var gv  = minV + (rng/5)*s;
+    var gy  = ty(gv).toFixed(1);
+    var isB = Math.abs(gv-100) < rng/5*0.7;
+    out += '<line x1="'+PAD.left+'" y1="'+gy+'" x2="'+(W-PAD.right)+'" y2="'+gy+'"'
+         + ' stroke="'+(isB?'rgba(255,255,255,.2)':'rgba(255,255,255,.06)')+'"'
+         + ' stroke-width="'+(isB?1.2:.8)+'"'
+         + (isB?' stroke-dasharray="5,4"':'')+'/>';
+    out += '<text x="'+(PAD.left-5)+'" y="'+(parseFloat(gy)+3.5)+'"'
+         + ' fill="#6b7594" font-size="9" font-family="DM Sans,sans-serif" text-anchor="end">'
+         + Math.round(gv)+'</text>';
   }
 
-  // label base 100
-  const yb=ty(100).toFixed(1);
-  out+=`<text x="${PAD.left+4}" y="${parseFloat(yb)-5}"
-    fill="rgba(255,255,255,.18)" font-size="8" font-family="DM Sans,sans-serif">base 100</text>`;
+  // baseline label
+  var yb = ty(100).toFixed(1);
+  out += '<text x="'+(PAD.left+4)+'" y="'+(parseFloat(yb)-5)+'"'
+       + ' fill="rgba(255,255,255,.18)" font-size="8" font-family="DM Sans,sans-serif">base 100</text>';
 
   // labels X
-  XLBLS.forEach((lbl,i)=>{
-    out+=`<text x="${tx(i).toFixed(1)}" y="${H-5}" fill="#9ba8c0" font-size="9"
-      font-family="DM Sans,sans-serif" text-anchor="middle">${lbl}</text>`;
+  XLBLS.forEach(function(lbl,i){
+    out += '<text x="'+tx(i).toFixed(1)+'" y="'+(H-5)+'"'
+         + ' fill="#9ba8c0" font-size="9" font-family="DM Sans,sans-serif" text-anchor="middle">'+lbl+'</text>';
   });
 
-  // Ã¡reas
-  ASSETS.forEach(a=>{
-    const pts=a.pts.map((v,i)=>`${i===0?'M':'L'}${tx(i).toFixed(1)},${ty(v).toFixed(1)}`).join(' ');
-    out+=`<path d="${pts} L${tx(N-1).toFixed(1)},${ty(minV).toFixed(1)} L${tx(0).toFixed(1)},${ty(minV).toFixed(1)} Z"
-      fill="${a.color}" fill-opacity="0.05"/>`;
+  // areas
+  ASSETS.forEach(function(a){
+    var d = a.pts.map(function(v,i){ return (i===0?'M':'L')+tx(i).toFixed(1)+','+ty(v).toFixed(1); }).join(' ');
+    out += '<path d="'+d+' L'+tx(N-1).toFixed(1)+','+ty(minV).toFixed(1)+' L'+tx(0).toFixed(1)+','+ty(minV).toFixed(1)+' Z"'
+         + ' fill="'+a.color+'" fill-opacity="0.05"/>';
   });
 
   // linhas
-  ASSETS.forEach(a=>{
-    const d=a.pts.map((v,i)=>`${i===0?'M':'L'}${tx(i).toFixed(1)},${ty(v).toFixed(1)}`).join(' ');
-    // NASDAQ linha mais grossa e tracejada para destacar
-    const extra = a.id==='nasdaq' ? 'stroke-width="3" stroke-dasharray="7,3"' : 'stroke-width="2.2"';
-    out+=`<path d="${d}" fill="none" stroke="${a.color}" ${extra}
-      stroke-linecap="round" stroke-linejoin="round"/>`;
+  ASSETS.forEach(function(a){
+    var d = a.pts.map(function(v,i){ return (i===0?'M':'L')+tx(i).toFixed(1)+','+ty(v).toFixed(1); }).join(' ');
+    var extra = a.id==='nasdaq' ? 'stroke-width="3" stroke-dasharray="7,3"' : 'stroke-width="2.2"';
+    out += '<path d="'+d+'" fill="none" stroke="'+a.color+'" '+extra+' stroke-linecap="round" stroke-linejoin="round"/>';
   });
 
   // pontos finais + valor
-  ASSETS.forEach(a=>{
-    const x=tx(N-1), y=ty(a.pts[N-1]);
-    out+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5"
-      fill="${a.color}" stroke="#1a1f2b" stroke-width="2"/>`;
-    out+=`<text x="${(x+8).toFixed(1)}" y="${(y+4).toFixed(1)}"
-      fill="${a.color}" font-size="9" font-family="DM Sans,sans-serif" font-weight="600">${a.pts[N-1].toFixed(0)}</text>`;
+  ASSETS.forEach(function(a){
+    var x = tx(N-1), y = ty(a.pts[N-1]);
+    out += '<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="4.5"'
+         + ' fill="'+a.color+'" stroke="#1a1f2b" stroke-width="2"/>';
+    out += '<text x="'+(x+8).toFixed(1)+'" y="'+(y+4).toFixed(1)+'"'
+         + ' fill="'+a.color+'" font-size="9" font-family="DM Sans,sans-serif" font-weight="600">'
+         + a.pts[N-1].toFixed(0)+'</text>';
   });
 
-  svg.innerHTML=out;
+  svg.innerHTML = out;
 }
-window.addEventListener('load',buildChart);
-window.addEventListener('resize',buildChart);
-setTimeout(buildChart,80);
+window.addEventListener('load', buildChart);
+window.addEventListener('resize', buildChart);
+setTimeout(buildChart, 80);
 
-// â”€â”€ CARDS (ordenado por total desc) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-document.getElementById('cards').innerHTML=
-  SORTED.map(a=>`<div class="card" style="--ac:${a.color}">
-    <div class="card-icon">${a.icon}</div>
-    <div class="card-name">${a.name}</div>
-    <div class="card-pct" style="color:${a.color}">${a.total>=0?'+':''}${a.total.toFixed(1)}%</div>
-    <div class="card-desc">${a.desc}</div>
-    <span class="card-badge" style="background:${a.bc};color:${a.bcc};border:1px solid ${a.bb}">${a.badge}</span>
-  </div>`).join('');
+// CARDS
+document.getElementById('cards').innerHTML = SORTED.map(function(a){
+  return '<div class="card" style="--ac:'+a.color+'">'
+    +'<div class="card-icon">'+a.icon+'</div>'
+    +'<div class="card-name">'+a.name+'</div>'
+    +'<div class="card-pct" style="color:'+a.color+'">'+(a.total>=0?'+':'')+a.total.toFixed(1)+'%</div>'
+    +'<div class="card-desc">'+a.desc+'</div>'
+    +'<span class="card-badge" style="background:'+a.bc+';color:'+a.bcc+';border:1px solid '+a.bb+'">'+a.badge+'</span>'
+    +'</div>';
+}).join('');
 
-// â”€â”€ BARRAS (ordenado por total desc dentro de cada ano) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-document.getElementById('bars').innerHTML=
-  YEARS.map((yr,yi)=>{
-    const lbl=yi===4?`${yr} <span class="yr-sub">(parcial janâ€“abr)</span>`:yr;
-    // ordena pelo valor daquele ano, decrescente
-    const sorted=[...SORTED].sort((a,b)=>b.y[yr]-a.y[yr]);
-    return `<div class="bars-year"><div class="yr-title">${lbl}</div>`+
-      sorted.map(a=>{
-        const v=a.y[yr], pos=v>=0, pct=Math.min(Math.abs(v)/65*100,100);
-        return `<div class="bar-row">
-          <div class="bar-nm">${a.icon} ${a.name}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${a.color};opacity:${pos?1:.4}"></div></div>
-          <div class="bar-val" style="color:${pos?a.color:'#fc5c7d'}">${pos?'+':''}${v.toFixed(1)}%</div>
-        </div>`;
-      }).join('')+`</div>`;
-  }).join('');
+// BARRAS
+document.getElementById('bars').innerHTML = YEARS.map(function(yr,yi){
+  var lbl = yi===4 ? yr+' <span class="yr-sub">(parcial jan&ndash;abr)</span>' : yr;
+  var sorted = ASSETS.slice().sort(function(a,b){ return b.y[yr]-a.y[yr]; });
+  return '<div class="bars-year"><div class="yr-title">'+lbl+'</div>'
+    + sorted.map(function(a){
+        var v=a.y[yr], pos=v>=0, pct=Math.min(Math.abs(v)/65*100,100);
+        return '<div class="bar-row">'
+          +'<div class="bar-nm">'+a.icon+' '+a.name+'</div>'
+          +'<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+a.color+';opacity:'+(pos?1:.4)+'"></div></div>'
+          +'<div class="bar-val" style="color:'+(pos?a.color:'#fc5c7d')+'">'+(pos?'+':'')+v.toFixed(1)+'%</div>'
+          +'</div>';
+      }).join('')
+    +'</div>';
+}).join('');
 
-// â”€â”€ TABELA (ordenado por total desc) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// TABELA
 (function(){
-  const head=`<tr><th>Ativo</th>${YLBLS.map(y=>`<th>${y}</th>`).join('')}<th>Acumulado</th></tr>`;
-  const body=SORTED.map(a=>{
-    const cols=YEARS.map(yr=>{
-      const v=a.y[yr];
-      return `<td><span class="pill ${v>=0?'pp':'pn'}">${v>=0?'+':''}${v.toFixed(1)}%</span></td>`;
+  var head = '<tr><th>Ativo</th>'+YLBLS.map(function(y){ return '<th>'+y+'</th>'; }).join('')+'<th>Acumulado</th></tr>';
+  var body = SORTED.map(function(a){
+    var cols = YEARS.map(function(yr){
+      var v=a.y[yr];
+      return '<td><span class="pill '+(v>=0?'pp':'pn')+'">'+(v>=0?'+':'')+v.toFixed(1)+'%</span></td>';
     }).join('');
-    return `<tr><td>${a.icon} ${a.name}</td>${cols}
-      <td><strong style="color:${a.color};font-family:'Syne',sans-serif;font-size:13px">${a.total>=0?'+':''}${a.total.toFixed(1)}%</strong></td>
-    </tr>`;
+    return '<tr><td>'+a.icon+' '+a.name+'</td>'+cols
+      +'<td><strong style="color:'+a.color+';font-family:\'Syne\',sans-serif;font-size:13px">'
+      +(a.total>=0?'+':'')+a.total.toFixed(1)+'%</strong></td></tr>';
   }).join('');
-  const p=10000;
-  const sim=`<tr class="tr-sim"><td>ðŸ’° R$10k â†’ hoje</td>`+
-    ASSETS.map(a=>{
-      const f=Math.round(p*(1+a.total/100)), g=f-p;
-      return `<td style="color:${a.color};font-weight:700">${g>=0?'+':'-'}R$${Math.abs(g).toLocaleString('pt-BR')}</td>`;
-    }).join('')+`<td></td></tr>`;
-  document.getElementById('tbl').innerHTML=`<thead>${head}</thead><tbody>${body}${sim}</tbody>`;
+  var p = 10000;
+  var sim = '<tr class="tr-sim"><td>&#128176; R$10k &rarr; hoje</td>'
+    + SORTED.map(function(a){
+        var f=Math.round(p*(1+a.total/100)), g=f-p;
+        return '<td style="color:'+a.color+';font-weight:700">'+(g>=0?'+':'-')+'R$'+Math.abs(g).toLocaleString('pt-BR')+'</td>';
+      }).join('')
+    +'<td></td></tr>';
+  document.getElementById('tbl').innerHTML = '<thead>'+head+'</thead><tbody>'+body+sim+'</tbody>';
 })();
 </script>
 </body>
