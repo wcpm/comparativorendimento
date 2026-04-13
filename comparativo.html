@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investimentos no Brasil — 2022 a 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d12;
+    --surface: #12161e;
+    --card: #1a1f2b;
+    --border: #232839;
+    --cdi: #00e5a0;
+    --poupanca: #4fc3f7;
+    --ibov: #ff9d3d;
+    --dolar: #a78bfa;
+    --ipca: #fc5c7d;
+    --text: #e8ecf4;
+    --muted: #6b7594;
+    --label: #9ba8c0;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+padding: 40px 20px 60px;
+}
+
+.wrapper { max-width: 980px; margin: 0 auto; }
+
+/* HEADER */
+header {
+text-align: center;
+margin-bottom: 50px;
+position: relative;
+}
+.eyebrow {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 14px;
+}
+h1 {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(2rem, 5vw, 3.4rem);
+font-weight: 800;
+line-height: 1.1;
+color: #fff;
+margin-bottom: 12px;
+}
+h1 span { color: var(–cdi); }
+.subtitle {
+color: var(–label);
+font-size: 15px;
+max-width: 520px;
+margin: 0 auto;
+line-height: 1.6;
+}
+.header-line {
+width: 60px; height: 3px;
+background: linear-gradient(90deg, var(–cdi), var(–ibov));
+margin: 24px auto 0;
+border-radius: 99px;
+}
+
+/* LEGENDA */
+.legend {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 10px 20px;
+margin-bottom: 40px;
+}
+.legend-item {
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 13px;
+color: var(–label);
+cursor: pointer;
+padding: 6px 12px;
+border-radius: 99px;
+border: 1px solid var(–border);
+background: var(–card);
+transition: all .2s;
+}
+.legend-item:hover { border-color: var(–border); opacity: .8; }
+.legend-item.active { border-color: var(–active-color, #fff); color: #fff; }
+.legend-dot {
+width: 10px; height: 10px;
+border-radius: 50%;
+background: var(–dot-color);
+flex-shrink: 0;
+}
+
+/* SIMULAÇÃO */
+.sim-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 28px 32px;
+margin-bottom: 40px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 20px;
+}
+.sim-label {
+font-size: 13px;
+color: var(–muted);
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-bottom: 6px;
+}
+.sim-input-group { display: flex; align-items: center; gap: 12px; }
+.sim-prefix {
+font-family: ‘Syne’, sans-serif;
+font-size: 22px;
+font-weight: 700;
+color: var(–cdi);
+}
+input[type=“number”] {
+background: var(–bg);
+border: 1px solid var(–border);
+color: #fff;
+font-family: ‘Syne’, sans-serif;
+font-size: 22px;
+font-weight: 700;
+padding: 10px 16px;
+border-radius: 10px;
+width: 180px;
+outline: none;
+transition: border-color .2s;
+}
+input[type=“number”]:focus { border-color: var(–cdi); }
+input[type=“number”]::-webkit-inner-spin-button { display: none; }
+.sim-results {
+display: flex;
+gap: 20px;
+flex-wrap: wrap;
+}
+.sim-result {
+text-align: center;
+padding: 12px 18px;
+border-radius: 12px;
+background: var(–bg);
+border: 1px solid var(–border);
+min-width: 120px;
+}
+.sim-result .val {
+font-family: ‘Syne’, sans-serif;
+font-size: 18px;
+font-weight: 700;
+margin-bottom: 4px;
+}
+.sim-result .nm { font-size: 11px; color: var(–muted); }
+
+/* GRÁFICO PRINCIPAL */
+.chart-section {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 30px 28px 24px;
+margin-bottom: 32px;
+}
+.chart-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 16px;
+font-weight: 700;
+color: #fff;
+margin-bottom: 6px;
+}
+.chart-desc { font-size: 12px; color: var(–muted); margin-bottom: 24px; }
+
+.chart-container {
+position: relative;
+height: 320px;
+padding-left: 56px;
+padding-bottom: 40px;
+}
+.y-axis {
+position: absolute;
+left: 0;
+top: 0; bottom: 40px;
+width: 52px;
+display: flex;
+flex-direction: column-reverse;
+justify-content: space-between;
+padding-bottom: 0;
+}
+.y-label {
+font-size: 10px;
+color: var(–muted);
+text-align: right;
+padding-right: 8px;
+line-height: 1;
+}
+.grid-area {
+position: absolute;
+left: 56px; right: 0;
+top: 0; bottom: 40px;
+}
+.grid-line {
+position: absolute;
+left: 0; right: 0;
+height: 1px;
+background: var(–border);
+opacity: .6;
+}
+.grid-line.zero { background: rgba(255,255,255,.15); opacity: 1; height: 1px; }
+
+svg.chart-svg {
+position: absolute;
+left: 0; right: 0; top: 0; bottom: 0;
+width: 100%; height: 100%;
+overflow: visible;
+}
+
+.x-labels {
+position: absolute;
+left: 0; right: 0;
+bottom: 0; height: 36px;
+display: flex;
+justify-content: space-around;
+}
+.x-label {
+font-size: 11px;
+color: var(–label);
+text-align: center;
+}
+
+/* CARDS DE RESULTADO TOTAL */
+.cards-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+gap: 16px;
+margin-bottom: 32px;
+}
+.result-card {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+padding: 22px 20px;
+position: relative;
+overflow: hidden;
+transition: transform .2s;
+}
+.result-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: var(–accent-color);
+}
+.result-card:hover { transform: translateY(-3px); }
+.rc-icon { font-size: 26px; margin-bottom: 10px; }
+.rc-name { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.rc-pct {
+font-family: ‘Syne’, sans-serif;
+font-size: 28px;
+font-weight: 800;
+line-height: 1;
+margin-bottom: 4px;
+}
+.rc-desc { font-size: 11px; color: var(–label); line-height: 1.4; margin-bottom: 10px; }
+.rc-badge {
+display: inline-block;
+font-size: 10px;
+padding: 3px 8px;
+border-radius: 99px;
+font-weight: 600;
+letter-spacing: .5px;
+}
+.badge-venceu { background: rgba(0,229,160,.12); color: var(–cdi); border: 1px solid rgba(0,229,160,.25); }
+.badge-perdeu { background: rgba(252,92,125,.12); color: var(–ipca); border: 1px solid rgba(252,92,125,.25); }
+.badge-parcial { background: rgba(167,139,250,.12); color: var(–dolar); border: 1px solid rgba(167,139,250,.25); }
+
+/* TABELA ANUAL */
+.table-section {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 28px;
+margin-bottom: 32px;
+overflow-x: auto;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+font-size: 13px;
+}
+th {
+font-family: ‘Syne’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–muted);
+padding: 10px 14px;
+text-align: right;
+border-bottom: 1px solid var(–border);
+}
+th:first-child { text-align: left; }
+td {
+padding: 12px 14px;
+text-align: right;
+border-bottom: 1px solid rgba(35,40,57,.5);
+font-variant-numeric: tabular-nums;
+}
+td:first-child { text-align: left; font-family: ‘Syne’, sans-serif; font-weight: 600; color: var(–label); }
+tr:last-child td { border-bottom: none; }
+.pos { color: var(–cdi); font-weight: 600; }
+.neg { color: var(–ipca); font-weight: 600; }
+.total-row td { background: var(–bg); font-weight: 700; }
+.total-row td:first-child { color: var(–text); }
+
+.pill {
+display: inline-block;
+padding: 3px 8px;
+border-radius: 6px;
+font-size: 12px;
+font-weight: 600;
+}
+.pill.pos { background: rgba(0,229,160,.1); }
+.pill.neg { background: rgba(252,92,125,.1); }
+
+/* BARRAS ANUAIS */
+.bars-section {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 20px;
+padding: 28px;
+margin-bottom: 32px;
+}
+.bars-year { margin-bottom: 26px; }
+.bars-year:last-child { margin-bottom: 0; }
+.year-label {
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+color: var(–text);
+margin-bottom: 12px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.year-label .yr-badge {
+font-size: 11px;
+color: var(–muted);
+font-family: ‘DM Sans’, sans-serif;
+font-weight: 400;
+}
+.bar-row {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 8px;
+}
+.bar-name { width: 76px; font-size: 12px; color: var(–label); flex-shrink: 0; text-align: right; }
+.bar-track {
+flex: 1;
+height: 22px;
+background: var(–bg);
+border-radius: 4px;
+overflow: hidden;
+position: relative;
+}
+.bar-fill {
+height: 100%;
+border-radius: 4px;
+transition: width 1s cubic-bezier(.4,0,.2,1);
+position: relative;
+}
+.bar-value {
+width: 60px;
+font-size: 12px;
+font-weight: 600;
+flex-shrink: 0;
+text-align: left;
+}
+
+/* NOTA INFLAÇÃO */
+.inflation-note {
+background: rgba(252,92,125,.06);
+border: 1px solid rgba(252,92,125,.2);
+border-radius: 12px;
+padding: 16px 20px;
+font-size: 13px;
+color: var(–label);
+margin-bottom: 32px;
+display: flex;
+gap: 12px;
+align-items: flex-start;
+}
+.inflation-note .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+/* FOOTER */
+footer {
+text-align: center;
+font-size: 11px;
+color: var(–muted);
+padding-top: 20px;
+border-top: 1px solid var(–border);
+line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+.sim-card { flex-direction: column; }
+.chart-container { height: 240px; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="eyebrow">Brasil · Jan/2022 → Abr/2026</div>
+    <h1>Onde seu dinheiro<br><span>rendeu mais?</span></h1>
+    <p class="subtitle">Comparativo de investimentos: CDI, Poupança, Ibovespa, Dólar e IPCA — quanto R$ 10.000 viraram em cada um.</p>
+    <div class="header-line"></div>
+  </header>
+
+  <!-- SIMULAÇÃO INTERATIVA -->
+
+  <div class="sim-card">
+    <div>
+      <div class="sim-label">Simule seu investimento</div>
+      <div class="sim-input-group">
+        <span class="sim-prefix">R$</span>
+        <input type="number" id="principal" value="10000" min="100" step="100">
+      </div>
+    </div>
+    <div class="sim-results" id="simResults"></div>
+  </div>
+
+  <!-- GRÁFICO DE LINHAS EVOLUTIVO -->
+
+  <div class="chart-section">
+    <div class="chart-title">Evolução acumulada — Base 100 (Jan/2022)</div>
+    <div class="chart-desc">Cada R$ 100 investidos no início de 2022. Quanto vale hoje?</div>
+    <div class="chart-container">
+      <div class="y-axis" id="yAxis"></div>
+      <div class="grid-area" id="gridArea">
+        <svg class="chart-svg" id="chartSvg" viewBox="0 0 800 280" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="x-labels" id="xLabels"></div>
+    </div>
+  </div>
+
+  <!-- CARDS RESULTADO TOTAL -->
+
+  <div class="cards-grid" id="resultCards"></div>
+
+  <!-- NOTA INFLAÇÃO -->
+
+  <div class="inflation-note">
+    <span class="icon">🔥</span>
+    <div>
+      <strong style="color:#fff">Referência de inflação (IPCA):</strong> +5,8% (2022) · +4,6% (2023) · +4,8% (2024) · +4,3% (2025) · +1,0% (2026 parcial) — <strong>acumulado: ~+22,9%</strong>. Qualquer investimento abaixo desse total perdeu poder de compra no período.
+    </div>
+  </div>
+
+  <!-- BARRAS ANUAIS -->
+
+  <div class="bars-section">
+    <div class="chart-title" style="margin-bottom:24px">Rentabilidade ano a ano</div>
+    <div id="barsContainer"></div>
+  </div>
+
+  <!-- TABELA DETALHADA -->
+
+  <div class="table-section">
+    <div class="chart-title" style="margin-bottom:4px">Tabela detalhada de rendimentos (%)</div>
+    <div class="chart-desc" style="margin-bottom:20px">2026 = parcial até abr/2026 · CDB típico = 100% CDI · Poupança = isenta de IR</div>
+    <table id="dataTable"></table>
+  </div>
+
+  <footer>
+    Fontes: B3, Banco Central do Brasil, IBGE, Investidor10, Clube dos Poupadores · Dados de 2026 parciais (jan–abr/2026)<br>
+    CDB calculado a 100% CDI antes do IR · Ibovespa: retorno do índice sem dividendos reinvestidos · Dólar: variação BRL/USD<br>
+    Este infográfico é educacional e não constitui recomendação de investimento.
+  </footer>
+
+</div>
+
+<script>
+const ASSETS = [
+  {
+    id: 'cdi', name: 'CDB/CDI', icon: '🏦', color: '#00e5a0',
+    desc: 'Renda fixa bancária atrelada ao CDI. Imposto de renda incide sobre o lucro.',
+    badge: 'badge-venceu', badgeText: 'Venceu inflação',
+    yearly: { 2022: 12.4, 2023: 13.04, 2024: 10.9, 2025: 14.32, 2026: 3.69 }
+  },
+  {
+    id: 'poupanca', name: 'Poupança', icon: '🐷', color: '#4fc3f7',
+    desc: 'Isenta de IR. Rende 70% da Selic + TR quando Selic > 8,5% a.a.',
+    badge: 'badge-perdeu', badgeText: 'Abaixo do CDI',
+    yearly: { 2022: 7.9, 2023: 8.1, 2024: 6.72, 2025: 8.19, 2026: 2.5 }
+  },
+  {
+    id: 'ibov', name: 'Ibovespa', icon: '📈', color: '#ff9d3d',
+    desc: 'Índice das principais ações da B3. Alta volatilidade, sem garantia.',
+    badge: 'badge-parcial', badgeText: 'Muito volátil',
+    yearly: { 2022: 4.69, 2023: 22.28, 2024: -10.36, 2025: 34.1, 2026: 21.55 }
+  },
+  {
+    id: 'dolar', name: 'Dólar', icon: '💵', color: '#a78bfa',
+    desc: 'Variação cambial BRL/USD. Proteção contra crises, mas muito oscilante.',
+    badge: 'badge-parcial', badgeText: 'Volátil',
+    yearly: { 2022: -5.28, 2023: -7.2, 2024: 27.37, 2025: -8.01, 2026: -8.5 }
+  },
+  {
+    id: 'ipca', name: 'IPCA', icon: '🔥', color: '#fc5c7d',
+    desc: 'Inflação oficial. Referência mínima para não perder poder de compra.',
+    badge: 'badge-perdeu', badgeText: 'Referência',
+    yearly: { 2022: 5.79, 2023: 4.62, 2024: 4.83, 2025: 4.26, 2026: 1.03 }
+  }
+];
+
+const YEARS = [2022, 2023, 2024, 2025, 2026];
+const YEAR_LABELS = ['2022', '2023', '2024', '2025', '2026*'];
+
+// Calcula base 100 acumulado
+function calcCumulative(asset) {
+  let val = 100;
+  const pts = [{ year: 'Início', val: 100 }];
+  YEARS.forEach((y, i) => {
+    val = val * (1 + asset.yearly[y] / 100);
+    pts.push({ year: YEAR_LABELS[i], val });
+  });
+  return pts;
+}
+
+// Totais
+ASSETS.forEach(a => {
+  const pts = calcCumulative(a);
+  a.total = pts[pts.length - 1].val - 100;
+  a.points = pts;
+});
+
+// SIMULAÇÃO
+function updateSim() {
+  const p = parseFloat(document.getElementById('principal').value) || 10000;
+  const html = ASSETS.slice(0, 4).map(a => {
+    const gain = p * a.total / 100;
+    const final = p + gain;
+    const pos = gain >= 0;
+    return `<div class="sim-result">
+      <div class="val" style="color:${a.color}">${pos ? '+' : ''}${fmt(gain)}</div>
+      <div style="font-size:13px;color:#fff;margin-bottom:4px;font-weight:600">${fmt(final)}</div>
+      <div class="nm">${a.icon} ${a.name}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('simResults').innerHTML = html;
+}
+function fmt(v) {
+  return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+}
+document.getElementById('principal').addEventListener('input', updateSim);
+updateSim();
+
+// CARDS
+const cardsHtml = ASSETS.map(a => {
+  const pos = a.total >= 0;
+  return `<div class="result-card" style="--accent-color:${a.color}">
+    <div class="rc-icon">${a.icon}</div>
+    <div class="rc-name">${a.name}</div>
+    <div class="rc-pct" style="color:${a.color}">${pos ? '+' : ''}${a.total.toFixed(1)}%</div>
+    <div class="rc-desc">${a.desc}</div>
+    <span class="rc-badge ${a.badge}">${a.badgeText}</span>
+  </div>`;
+}).join('');
+document.getElementById('resultCards').innerHTML = cardsHtml;
+
+// GRÁFICO LINHAS
+(function buildChart() {
+  const svg = document.getElementById('chartSvg');
+  const xLabels = document.getElementById('xLabels');
+  const yAxis = document.getElementById('yAxis');
+  const gridArea = document.getElementById('gridArea');
+
+  // Range
+  let allVals = ASSETS.flatMap(a => a.points.map(p => p.val));
+  const minV = Math.floor(Math.min(...allVals) / 10) * 10;
+  const maxV = Math.ceil(Math.max(...allVals) / 10) * 10;
+  const range = maxV - minV;
+
+  const W = 800, H = 280;
+  const pts = YEARS.length + 1; // 6 pontos
+
+  function toX(i) { return (i / (pts - 1)) * W; }
+  function toY(v) { return H - ((v - minV) / range) * H; }
+
+  // Grid lines
+  const steps = 5;
+  let gridHtml = '';
+  let yHtml = '';
+  for (let i = 0; i <= steps; i++) {
+    const v = minV + (range / steps) * i;
+    const pct = (i / steps) * 100;
+    const isZero = Math.abs(v - 100) < 1;
+    gridHtml += `<div class="grid-line${isZero ? ' zero' : ''}" style="bottom:${pct}%"></div>`;
+    yHtml = `<div class="y-label">${Math.round(v)}</div>` + yHtml;
+  }
+  gridArea.innerHTML += gridHtml;
+  yAxis.innerHTML = yHtml;
+
+  // X labels
+  xLabels.innerHTML = ['Jan/22', '22', '23', '24', '25', 'Abr/26'].map(l =>
+    `<span class="x-label">${l}</span>`
+  ).join('');
+
+  // Lines
+  let svgContent = '';
+
+  // Area fills
+  ASSETS.forEach(a => {
+    const d = a.points.map((p, i) => `${i === 0 ? 'M' : 'L'}${toX(i)},${toY(p.val)}`).join(' ');
+    const dClose = d + ` L${toX(pts - 1)},${H} L0,${H} Z`;
+    svgContent += `<path d="${dClose}" fill="${a.color}" opacity="0.04"/>`;
+  });
+
+  // Lines
+  ASSETS.forEach(a => {
+    const d = a.points.map((p, i) => `${i === 0 ? 'M' : 'L'}${toX(i)},${toY(p.val)}`).join(' ');
+    svgContent += `<path d="${d}" fill="none" stroke="${a.color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>`;
+  });
+
+  // Dots + labels at end
+  ASSETS.forEach(a => {
+    const last = a.points[a.points.length - 1];
+    const x = toX(pts - 1);
+    const y = toY(last.val);
+    svgContent += `<circle cx="${x}" cy="${y}" r="5" fill="${a.color}" stroke="${a.color}" stroke-width="2"/>`;
+    svgContent += `<circle cx="${toX(0)}" cy="${toY(100)}" r="3" fill="${a.color}" opacity="0.4"/>`;
+  });
+
+  // 100 baseline
+  const y100 = toY(100);
+  svgContent += `<line x1="0" y1="${y100}" x2="${W}" y2="${y100}" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="4,4"/>`;
+  svgContent += `<text x="4" y="${y100 - 4}" fill="rgba(255,255,255,0.3)" font-size="9" font-family="DM Sans">base 100</text>`;
+
+  svg.innerHTML = svgContent;
+})();
+
+// BARRAS ANUAIS
+(function buildBars() {
+  const container = document.getElementById('barsContainer');
+  const maxAbs = 40;
+
+  let html = '';
+  YEARS.forEach((year, yi) => {
+    const label = yi === 4 ? `${year} <span class="yr-badge">(parcial jan–abr)</span>` : year;
+    html += `<div class="bars-year"><div class="year-label">${label}</div>`;
+    ASSETS.forEach(a => {
+      const v = a.yearly[year];
+      const pos = v >= 0;
+      const pct = Math.min(Math.abs(v) / maxAbs * 100, 100);
+      html += `<div class="bar-row">
+        <div class="bar-name">${a.icon} ${a.name}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:${a.color};opacity:${pos ? 1 : 0.5}"></div>
+        </div>
+        <div class="bar-value" style="color:${pos ? a.color : '#fc5c7d'}">${pos ? '+' : ''}${v.toFixed(1)}%</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+})();
+
+// TABELA
+(function buildTable() {
+  const table = document.getElementById('dataTable');
+
+  let th = '<tr><th>Ativo</th>' + YEARS.map((y, i) => `<th>${YEAR_LABELS[i]}</th>`).join('') + '<th>Total acum.</th></tr>';
+
+  let rows = '';
+  ASSETS.forEach(a => {
+    rows += `<tr>
+      <td>${a.icon} ${a.name}</td>
+      ${YEARS.map(y => {
+        const v = a.yearly[y];
+        const pos = v >= 0;
+        return `<td><span class="pill ${pos ? 'pos' : 'neg'}">${pos ? '+' : ''}${v.toFixed(1)}%</span></td>`;
+      }).join('')}
+      <td><strong style="color:${a.color};font-family:'Syne',sans-serif">${a.total >= 0 ? '+' : ''}${a.total.toFixed(1)}%</strong></td>
+    </tr>`;
+  });
+
+  // Linha R$ 10k
+  const p = 10000;
+  rows += `<tr class="total-row">
+    <td>💰 R$ 10k → hoje</td>
+    ${ASSETS.map(a => `<td style="display:none"></td>`).slice(0,0).join('')}
+    ${ASSETS.map(a => {
+      const final = Math.round(p * (1 + a.total/100));
+      const gain = final - p;
+      const pos = gain >= 0;
+      return `<td colspan="1" style="color:${a.color};font-weight:700">${pos?'+':''}R$${Math.abs(gain).toLocaleString('pt-BR')}</td>`;
+    }).join('')}
+    <td></td>
+  </tr>`;
+
+  table.innerHTML = '<thead>' + th + '</thead><tbody>' + rows + '</tbody>';
+})();
+</script>
+
+</body>
+</html>
